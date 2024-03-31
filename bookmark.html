@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Books - Library Management System</title>
-    <style>
-        body {
+    <title>Bookmark - Library Management System</title>
+   <style>
+    body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -55,7 +55,7 @@ table th, table td {
 }
 
 table th {
-    background-color: #f3e13f;
+    background-color: #f0cf40;
 }
 
 table tbody tr:nth-child(even) {
@@ -66,10 +66,10 @@ table tbody tr:hover {
     background-color: #ddd;
 }
 #Head{
-    display: flex
+    display: flex;
 }
 
-    </style>
+   </style>
 </head>
 <body>
     <div id="Head">
@@ -82,9 +82,9 @@ table tbody tr:hover {
     </div>
     </div>
     <hr>
+
     <div class="container">
-     
-        <table id="my-books-table">
+        <table id="bookmark-table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -99,37 +99,37 @@ table tbody tr:hover {
             <tbody></tbody>
         </table>
     </div>
-
 </body>
 </html>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const myBooksTableBody = document.querySelector('#my-books-table tbody');
+   document.addEventListener('DOMContentLoaded', function () {
+    const bookmarkTableBody = document.querySelector('#bookmark-table tbody');
 
-    function displayMyBooks(books) {
-        myBooksTableBody.innerHTML = '';
-        books.forEach((book , index) => {
+    function displayBookmarks(bookmarks) {
+        bookmarkTableBody.innerHTML = '';
+        bookmarks.forEach((bookmark, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${book.bookName}</td>
-                <td>${book.authorName}</td>
-                <td>${book.bookDescription}</td>
-                <td>${book.addedDate}</td>
-                <td>${book.bookCategory}</td>
-                <td>${book.bookPrice}</td>
+                <td>${bookmark.bookName}</td>
+                <td>${bookmark.authorName}</td>
+                <td>${bookmark.bookDescription}</td>
+                <td>${bookmark.addedDate}</td>
+                <td>${bookmark.bookCategory}</td>
+                <td>${bookmark.bookPrice}</td>
                 <td><button class="delete-btn" data-index="${index}">Delete</button></td>
             `;
             row.querySelector('.delete-btn').addEventListener('click', function () {
-                books.splice(index, 1);
-                localStorage.setItem('buy-list', JSON.stringify(books));
-                displayMyBooks(books);
+                bookmarks.splice(index, 1);
+                localStorage.setItem('bookmark-list', JSON.stringify(bookmarks));
+                displayBookmarks(bookmarks);
             });
-            myBooksTableBody.appendChild(row);
+            bookmarkTableBody.appendChild(row);
         });
     }
 
-    const myBooks = JSON.parse(localStorage.getItem('buy-list')) || [];
-    displayMyBooks(myBooks);
+    const bookmarks = JSON.parse(localStorage.getItem('bookmark-list')) || [];
+    displayBookmarks(bookmarks);
 });
+
 
 </script>
